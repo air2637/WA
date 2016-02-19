@@ -15,6 +15,7 @@ public class CityNode {
     public ArrayList<CityNode> directNeighbors;
     public String cityNum;
     public boolean isCityFestive;
+    public boolean visited;
     
     public CityNode(String cityNum){
         this(cityNum,false);
@@ -29,6 +30,7 @@ public class CityNode {
         }
         
         directNeighbors = new ArrayList<CityNode>();
+        visited = false;
     }
     
     public void addRelationship(CityNode otherCityNum){
