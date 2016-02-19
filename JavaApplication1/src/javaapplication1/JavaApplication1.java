@@ -7,7 +7,9 @@ package javaapplication1;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -111,6 +113,11 @@ public class JavaApplication1 {
                 connectedCityNodes.put(cnToUpdate.cityNum, cnToUpdate);
             }else{
                 queryCities.add(temp);
+                if(connectedCityNodes.containsKey(temp[1])){
+                    CityNode queryNode = connectedCityNodes.get(temp[1]);
+                    System.out.println(findNearestFestive(queryNode,0)); 
+                    unVisitCityNodes(connectedCityNodes);
+                }
             }
             orderCnt ++;
         }
@@ -141,5 +148,33 @@ public class JavaApplication1 {
             System.out.println();
         }
         
+    }
+
+    private static int findNearestFestive(CityNode queryNode, int distance) {
+        connectedCityNodes.remove(queryNode.cityNum);
+        queryNode.visited=true;
+        connectedCityNodes.put(queryNode.cityNum, queryNode);
+        
+        if(queryNode.isCityFestive){
+            return distance;
+        }
+        else if(!queryNode.directNeighbors.isEmpty()){
+            for(CityNode eachNeighbour: queryNode.directNeighbors){
+                eachNeighbour = connectedCityNodes.get(eachNeighbour.cityNum);
+                //connectedCityNodes.remove(eachNeighbour.cityNum);
+                
+                if(!eachNeighbour.visited){
+                  return findNearestFestive(eachNeighbour, distance+1);
+                }
+            }
+        }
+        return Integer.MAX_VALUE; //since every node is connected, this step will never be reached
+
+    }
+
+    private static void unVisitCityNodes(HashMap<String, CityNode> connectedCityNodes) {
+       for(Map.Entry<String,CityNode> entry: connectedCityNodes.entrySet()){
+          entry.getValue().visited=false;
+       }
     }
 }
