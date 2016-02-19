@@ -7,7 +7,6 @@ package javaapplication1;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -31,36 +30,42 @@ public class JavaApplication1 {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        /*
-        List<int[]> intList= new ArrayList<int[]>(); 
+        
+        List<String[]> strList= new ArrayList<String[]>(); 
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()){
             String line = scanner.nextLine();
             if(line == null||line.isEmpty()){
-                processData(intList);
+                printData(strList);
                 break;
             }else{
                 String[] strArray=line.split(" ");
-                int[] intArray=new int[strArray.length];
-                for(int i=0; i<intArray.length; i++){
-                    intArray[i]=Integer.parseInt(strArray[i]);
-                }
-                intList.add(intArray);
+                strList.add(strArray);
             }
         }
         scanner.close();
-        */
+        
+        
+        /*
         List<String[]> strList= new ArrayList<String[]>(); 
-        strList.add(new String[] {"5","5"});
-        strList.add(new String[] {"1","2"});
-        strList.add(new String[] {"1","3"});
-        strList.add(new String[] {"3","4"});
-        strList.add(new String[] {"3","5"});
-        strList.add(new String[] {"2","5"});
-        strList.add(new String[] {"2","3"});
-        strList.add(new String[] {"1","3"});
-        strList.add(new String[] {"2","3"});
-        strList.add(new String[] {"2","4"});
+        strList.add(new String[] {"11","5"});
+        strList.add(new String[] {"1","300"});
+        strList.add(new String[] {"256","300"});
+        strList.add(new String[] {"256","3"});
+        strList.add(new String[] {"3","33"});
+        strList.add(new String[] {"3","10"});
+        strList.add(new String[] {"10","55"});
+        strList.add(new String[] {"55","35"});
+        strList.add(new String[] {"60","55"});
+        strList.add(new String[] {"80","60"});
+        strList.add(new String[] {"111","60"});
+        
+        strList.add(new String[] {"2","35"});
+        strList.add(new String[] {"2","10"});
+        strList.add(new String[] {"1","60"});
+        strList.add(new String[] {"1","256"});
+        strList.add(new String[] {"2","10"});
+        */
         
         printData(strList);
       //  processData(strList);
@@ -78,14 +83,14 @@ public class JavaApplication1 {
             CityNode cn1,cn2;
             if(connectedCityNodes.containsKey(strList.get(q)[0])){
                 cn1 = connectedCityNodes.get(strList.get(q)[0]);
-                connectedCityNodes.remove(cn1.cityNum);
+                //connectedCityNodes.remove(cn1.cityNum);
             }else{
                 cn1= new CityNode (strList.get(q)[0]);
             }
             
             if(connectedCityNodes.containsKey(strList.get(q)[1])){
                 cn2 = connectedCityNodes.get(strList.get(q)[1]);
-                connectedCityNodes.remove(cn2.cityNum);
+                //connectedCityNodes.remove(cn2.cityNum);
             }else{
                 cn2= new CityNode (strList.get(q)[1]);
             }
@@ -108,7 +113,7 @@ public class JavaApplication1 {
             if(strList.get(p)[0].equals("1")){
                 festiveCities.add(temp);
                 CityNode cnToUpdate = connectedCityNodes.get(temp[1]);
-                connectedCityNodes.remove(temp[1]);
+                //connectedCityNodes.remove(temp[1]);
                 cnToUpdate.setToFestive();
                 connectedCityNodes.put(cnToUpdate.cityNum, cnToUpdate);
             }else{
@@ -123,7 +128,7 @@ public class JavaApplication1 {
         }
         
         
-        
+ /*       
         System.out.println("connected cities are: ");
         for (String[] value:connectedCities){
             for (String subValue: value){
@@ -147,11 +152,11 @@ public class JavaApplication1 {
             }
             System.out.println();
         }
-        
+ */
     }
 
     private static int findNearestFestive(CityNode queryNode, int distance) {
-        connectedCityNodes.remove(queryNode.cityNum);
+        //connectedCityNodes.remove(queryNode.cityNum);
         queryNode.visited=true;
         connectedCityNodes.put(queryNode.cityNum, queryNode);
         
@@ -161,7 +166,6 @@ public class JavaApplication1 {
         else if(!queryNode.directNeighbors.isEmpty()){
             for(CityNode eachNeighbour: queryNode.directNeighbors){
                 eachNeighbour = connectedCityNodes.get(eachNeighbour.cityNum);
-                //connectedCityNodes.remove(eachNeighbour.cityNum);
                 
                 if(!eachNeighbour.visited){
                   return findNearestFestive(eachNeighbour, distance+1);
