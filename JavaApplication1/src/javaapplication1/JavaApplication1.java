@@ -105,6 +105,10 @@ public class JavaApplication1 {
             
             if(strList.get(p)[0].equals("1")){
                 festiveCities.add(temp);
+                CityNode cnToUpdate = connectedCityNodes.get(temp[1]);
+                connectedCityNodes.remove(temp[1]);
+                cnToUpdate.setToFestive();
+                connectedCityNodes.put(cnToUpdate.cityNum, cnToUpdate);
             }else{
                 queryCities.add(temp);
             }
