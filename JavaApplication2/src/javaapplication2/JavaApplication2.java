@@ -40,7 +40,7 @@ public class JavaApplication2 {
         int rowCnt=0;
         while(sc.hasNextLine()){
             String nextLine = sc.nextLine();
-            if(nextLine==null||nextLine.isEmpty()||rowCnt==n){
+            if(nextLine==null||nextLine.isEmpty()){
                 break;
             }
             else{
