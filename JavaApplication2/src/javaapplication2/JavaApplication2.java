@@ -63,7 +63,7 @@ public class JavaApplication2 {
         
         
         for(int i=0; i<m; i++){
-            int[] anotherIntArray = new int[m];
+            int[] anotherIntArray = new int[n];
             int j=0;
             for(int[] eachArray: myIntList){
                 anotherIntArray[j]=eachArray[i];
@@ -138,11 +138,13 @@ public class JavaApplication2 {
         int base = columnToReturn[columnToReturn.length-1];
         
         for(int i=columnToReturn.length-2; i>=0; i--){
+            
             if(base == -1 || column2[i] == -1){
                 base = Math.max(column2[i], columnFromLeft[i]);
                 columnToReturn[i] = base;
             }else{
-                columnToReturn[i] = base + column2[i];
+                
+                columnToReturn[i] = Math.max(base + column2[i], columnFromLeft[i]);
                 base = columnToReturn[i];
             }
         }
@@ -171,11 +173,12 @@ public class JavaApplication2 {
         int base = columnToReturn[0];
         
         for(int i=1; i<columnToReturn.length; i++){
+            
             if(base == -1 || column2[i] ==-1){
                 base = Math.max(column2[i], columnFromLeft[i]) ;
                 columnToReturn[i] = base;
             }else{
-                columnToReturn[i] = base + column2[i];
+                columnToReturn[i] = Math.max(base + column2[i], columnFromLeft[i]);
                 base = columnToReturn[i];
             }
         }
