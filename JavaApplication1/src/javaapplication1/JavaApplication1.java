@@ -65,10 +65,10 @@ public class JavaApplication1 {
         strList.add(new String[] {"1","60"});
         strList.add(new String[] {"1","256"});
         strList.add(new String[] {"2","10"});
-        */
+        
         
         printData(strList);
-      //  processData(strList);
+        */
     }
 
     private static void printData(List<String[]> strList) {
@@ -115,7 +115,7 @@ public class JavaApplication1 {
                 CityNode cnToUpdate = connectedCityNodes.get(temp[1]);
                 //connectedCityNodes.remove(temp[1]);
                 cnToUpdate.setToFestive();
-                connectedCityNodes.put(cnToUpdate.cityNum, cnToUpdate);
+                //connectedCityNodes.put(cnToUpdate.cityNum, cnToUpdate);
             }else{
                 queryCities.add(temp);
                 if(connectedCityNodes.containsKey(temp[1])){
